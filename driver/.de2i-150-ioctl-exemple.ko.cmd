@@ -1,0 +1,1 @@
+cmd_/home/de2i-150/ihs-project-layout/driver/de2i-150-ioctl-exemple.ko := ld -r -m elf_x86_64 --build-id=sha1  -T scripts/module.lds -o /home/de2i-150/ihs-project-layout/driver/de2i-150-ioctl-exemple.ko /home/de2i-150/ihs-project-layout/driver/de2i-150-ioctl-exemple.o /home/de2i-150/ihs-project-layout/driver/de2i-150-ioctl-exemple.mod.o;  true
