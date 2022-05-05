@@ -285,7 +285,7 @@ def main():
         while flagStart:
             quitGame(fd)
             flagStart = startGame(fd)
-            pygame.time.delay(slowGame()) # xms delay
+            pygame.time.delay(slowGame(fd)) # xms delay
             clock.tick(10) # x frames per second
             s.move(fd) 
             if s.body[0].pos==snack.pos:
