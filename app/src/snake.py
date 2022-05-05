@@ -63,42 +63,43 @@ class Snake(object):
         #moveFPGAU = #receber click cima do fpga Aqui
         #moveFPGAD = #receber click baixo do fpga Aqui
         #Move Left
-        print(int.from_bytes(red,'little'))
-        '''
-        if (red == hex(0xE) AND flagMove==0){
+        #print(int.from_bytes(red,'little'))
+        button = int.from_bytes(red,'little')
+        
+        if (button == 14 AND flagMove==0){
             flagMove = 1
             self.dirnx = -1
             self.dirny = 0
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(red == 0xF AND flagMove==1){
+        }elif(button == 15 AND flagMove==1){
             flagMove = 0
         }#Move Right
-        if (red == 0x7 AND flagMove==0){
+        if (button == 7 AND flagMove==0){
             flagMove = 1
             self.dirnx = 1
             self.dirny = 0
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(red == 0xF AND flagMove==1){
+        }elif(button == 15 AND flagMove==1){
             flagMove = 0
         }#Move Up
-        if (red ==0xD AND flagMove==0){
+        if (button ==13 AND flagMove==0){
             flagMove = 1
             self.dirnx = 0
             self.dirny = -1
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(red == 0xF AND flagMove==1){
+        }elif(button == 15 AND flagMove==1){
             flagMove = 0
         }#Move Down
-        if (red == 0xB AND flagMove==0){
+        if (button == 11 AND flagMove==0){
             flagMove = 1
             self.dirnx = 0
             self.dirny = 1
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(red == 0xF AND flagMove==1){
+        }elif(button == 15 AND flagMove==1){
             flagMove = 0
         }
         
-'''
+
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
