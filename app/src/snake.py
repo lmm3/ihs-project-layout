@@ -360,7 +360,7 @@ def main():
     #WR_GREEN_LEDS
     charminho = threading.Thread(target=charme, args=(fd,))
     charminho.start()
-    charminho.joy()
+    charminho.join()
 
     data = 0x0000007f
     ioctl(fd, WR_GREEN_LEDS)
