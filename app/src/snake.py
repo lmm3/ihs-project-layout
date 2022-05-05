@@ -285,8 +285,8 @@ def main():
         while flagStart:
             quitGame(fd)
             flagStart = startGame(fd)
-            pygame.time.delay(slowGame(fd)) # xms delay
-            clock.tick(10) # x frames per second
+            pygame.time.delay(50) # xms delay
+            clock.tick(slowGame(fd)) # x frames per second
             s.move(fd) 
             if s.body[0].pos==snack.pos:
                 s.add_cube()
