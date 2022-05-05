@@ -64,6 +64,7 @@ class Snake(object):
         #moveFPGAD = #receber click baixo do fpga Aqui
         #Move Left
         print(red)
+        '''
         if (red == hex(0xE) AND flagMove==0){
             flagMove = 1
             self.dirnx = -1
@@ -97,7 +98,7 @@ class Snake(object):
             flagMove = 0
         }
         
-
+'''
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
