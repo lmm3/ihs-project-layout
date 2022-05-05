@@ -245,7 +245,7 @@ def main():
     win = pygame.display.set_mode((width,width))
     s = Snake((255,0,0),(10,10))
     snack = Cube(random_Snack(rows,s),color=(0,255,0))
-    flagStart =  True
+    flagInit =  True
     flagStart =  True
     clock = pygame.time.Clock()
 
