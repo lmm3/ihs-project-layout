@@ -297,14 +297,16 @@ def main():
         print("Error: expected more command line arguments")
         print("Syntax: %s </dev/device_file>"%sys.argv[0])
         exit(1)
-    #global data = 0x40404079
-    #ioctl(fd, WR_R_DISPLAY)
-    #retval = os.write(fd, data.to_bytes(4, 'little'))
     #print("wrote %d bytes"%retval)
     fd = os.open(sys.argv[1], os.O_RDWR)
     #ioctl(fd, RD_PBUTTONS)
     #red = os.read(fd, 4); # read 4 bytes and store in red var
     #print("red 0x%X"%int.from_bytes(red, 'little'))
+    #WR_RED_LEDS
+    #WR_GREEN_LEDS
+    global data = 0x0000007f
+    ioctl(fd, WR_GREEN_LEDS)
+    retval = os.write(fd, data.to_bytes(4, 'little'))
     
     global width,rows,s,snack
     width = 500
