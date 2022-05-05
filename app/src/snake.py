@@ -207,6 +207,7 @@ def redraw_window(surface):
 
 def charme(fd):
     while(True):
+        quitGame(fd)
         data = 0xFEFEFEFE
         ioctl(fd, WR_L_DISPLAY)
         retval = os.write(fd, data.to_bytes(4, 'little'))
@@ -360,7 +361,7 @@ def main():
     #WR_GREEN_LEDS
     charminho = threading.Thread(target=charme, args=(fd,))
     charminho.start()
-    charminho.join()
+    
 
     data = 0x0000007f
     ioctl(fd, WR_GREEN_LEDS)
