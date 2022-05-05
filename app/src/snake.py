@@ -237,7 +237,7 @@ def quitGame(fd):
     ioctl(fd,RD_SWITCHES)
     switch_status =os.read(fd,4)
     aux = int.from_bytes(switch_status, 'little')
-    print(aux)
+   # print(aux)
     if (aux == 131073 or aux == 131072 or aux == 131074 or aux == 131075 ):
         exit(1)
     else:
@@ -283,7 +283,7 @@ def slowGame(fd):
     ioctl(fd,RD_SWITCHES)
     switch_status =os.read(fd,4)
     aux = int.from_bytes(switch_status, 'little')
-    print(aux)
+   # print(aux)
     if (aux == 3):
         return 5
     else:
@@ -315,10 +315,11 @@ def main():
     clock = pygame.time.Clock()
 
     while (flagInit):
-        drawScore(fd,len(s.body))
         flagStart = startGame(fd)
         quitGame(fd)
         while flagStart:
+            drawScore(fd,len(s.body))
+            
             quitGame(fd)
             flagStart = startGame(fd)
             pygame.time.delay(50) # xms delay
