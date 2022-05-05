@@ -89,7 +89,7 @@ class Snake(object):
         #Move Up
         if (button ==13 and flagMove==0):
             flagMove = 1
-            if(self.dirnx !=0 and self.dirny !=1)
+            if(self.dirnx !=0 and self.dirny !=1):
                 self.dirnx = 0
                 self.dirny = -1
                 self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
@@ -98,7 +98,7 @@ class Snake(object):
         #Move Down
         if (button == 11 and flagMove==0):
             flagMove = 1
-            if(self.dirnx !=0 and self.dirny !=-1)
+            if(self.dirnx !=0 and self.dirny !=-1):
                 self.dirnx = 0
                 self.dirny = 1
                 self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
