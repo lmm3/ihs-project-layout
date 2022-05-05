@@ -55,49 +55,48 @@ class Snake(object):
         ioctl(fd, RD_PBUTTONS)
         red = os.read(fd, 4); # read 4 bytes and store in red var
         print("red 0x%X"%int.from_bytes(red, 'little'))
+
     
-        """
         flagMove =0
         moveFPGAL = #receber click esquerda do fpga Aqui
         moveFPGAR = #receber click direita do fpga Aqui
         moveFPGAU = #receber click cima do fpga Aqui
         moveFPGAD = #receber click baixo do fpga Aqui
         #Move Left
-        if (moveFPGAL == 1 AND flagMove==0){
+        if (red == 0xE AND flagMove==0){
             flagMove = 1
             self.dirnx = -1
             self.dirny = 0
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(moveFPGAL == 0 AND flagMove==1){
+        }elif(red == 0xF AND flagMove==1){
             flagMove = 0
         }#Move Right
-        if (moveFPGAR == 1 AND flagMove==0){
+        if (red == 0x7 AND flagMove==0){
             flagMove = 1
             self.dirnx = 1
             self.dirny = 0
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(moveFPGAR == 0 AND flagMove==1){
+        }elif(red == 0xF AND flagMove==1){
             flagMove = 0
         }#Move Up
-        if (moveFPGAU == 1 AND flagMove==0){
+        if (red ==0xD AND flagMove==0){
             flagMove = 1
             self.dirnx = 0
             self.dirny = -1
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(moveFPGAU == 0 AND flagMove==1){
+        }elif(red == 0xF AND flagMove==1){
             flagMove = 0
         }#Move Down
-        if (moveFPGAD == 1 AND flagMove==0){
+        if (red == 0xB AND flagMove==0){
             flagMove = 1
             self.dirnx = 0
             self.dirny = 1
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(moveFPGAD == 0 AND flagMove==1){
+        }elif(red == 0xF AND flagMove==1){
             flagMove = 0
         }
         
 
-        """
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
