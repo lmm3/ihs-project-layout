@@ -66,12 +66,12 @@ class Snake(object):
         #print(int.from_bytes(red,'little'))
         button = int.from_bytes(red,'little')
         print(button)
-        if(button==14 AND flagMove ==0){
+        if(button==14 and flagMove ==0){
             flagMove = 1
             self.dirnx = -1
             self.dirny = 0
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(button == 15 AND flagMove==1){
+        }elif(button == 15 and flagMove==1){
             flagMove = 0
         }
   '''      
