@@ -238,11 +238,21 @@ def quitGame(fd):
     switch_status =os.read(fd,4)
     aux = int.from_bytes(switch_status, 'little')
     print(aux)
-    if (aux == 2 or aux == 3):
+    if (aux = 131073 or aux == 131072 or aux = 131074 or aux = 131075 ):
         exit(1)
     else:
         return False
     
+
+def slowGame(fd):
+    ioctl(fd,RD_SWITCHES)
+    switch_status =os.read(fd,4)
+    aux = int.from_bytes(switch_status, 'little')
+    print(aux)
+    if (aux = 3):
+        return 25
+    else:
+        return 50
 
 def main():
     if len(sys.argv) < 2:
@@ -275,7 +285,7 @@ def main():
         while flagStart:
             quitGame(fd)
             flagStart = startGame(fd)
-            pygame.time.delay(50) # xms delay
+            pygame.time.delay(slowGame()) # xms delay
             clock.tick(10) # x frames per second
             s.move(fd) 
             if s.body[0].pos==snack.pos:
