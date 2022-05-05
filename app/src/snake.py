@@ -65,7 +65,7 @@ class Snake(object):
         #Move Left
         #print(int.from_bytes(red,'little'))
         button = int.from_bytes(red,'little')
-        print(button)
+        #print(button)
          
         if (button == 14 and flagMove==0):
             flagMove = 1
@@ -232,6 +232,16 @@ def startGame(fd):
         return True
     else:
         return False
+
+def quitGame(fd):
+    ioctl(fd,RD_SWITCHES)
+    switch_status =os.read(fd,4)
+    aux = int.from_bytes(switch_status, 'little')
+    #print(aux)
+    if (aux == 2 or aux == 3):
+        exit(1)
+    else:
+        return False
     
 
 def main():
@@ -261,6 +271,7 @@ def main():
 
     while (flagInit):
         flagStart = startGame(fd)
+        quit
         while flagStart:
             flagStart = startGame(fd)
             pygame.time.delay(50) # xms delay
