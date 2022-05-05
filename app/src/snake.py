@@ -65,7 +65,16 @@ class Snake(object):
         #Move Left
         #print(int.from_bytes(red,'little'))
         button = int.from_bytes(red,'little')
-        
+        print(button)
+        if(button==14 AND flagMove ==0){
+            flagMove = 1
+            self.dirnx = -1
+            self.dirny = 0
+            self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
+        }elif(button == 15 AND flagMove==1){
+            flagMove = 0
+        }
+  '''      
         if (button == 14 AND flagMove==0){
             flagMove = 1
             self.dirnx = -1
@@ -99,7 +108,7 @@ class Snake(object):
             flagMove = 0
         }
         
-
+'''
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
