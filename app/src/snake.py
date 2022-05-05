@@ -63,7 +63,7 @@ class Snake(object):
         #moveFPGAU = #receber click cima do fpga Aqui
         #moveFPGAD = #receber click baixo do fpga Aqui
         #Move Left
-        if (red == "E" AND flagMove==0){
+        if (red == 'E' AND flagMove==0){
             flagMove = 1
             self.dirnx = -1
             self.dirny = 0
