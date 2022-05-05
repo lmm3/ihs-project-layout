@@ -245,11 +245,11 @@ def quitGame(fd):
     
 def numMap(score):
     if (score ==0):
-        return 0x404040C0
+        return 404040C0
     if (score == 1):
-        return 0X40404079
+        return 40404079
     if (score == 2):#00010010
-        return 0X404040A4
+        return 404040A4
     if (score == 3):#00000110
         return 6
     if (score == 4):#01001100
