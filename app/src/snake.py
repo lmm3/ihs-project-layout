@@ -210,7 +210,10 @@ def blinking(fd):
         data = 0x0000007f
         ioctl(fd, WR_GREEN_LEDS)
         retval = os.write(fd, data.to_bytes(4, 'little'))
-    
+    data = 0x00000000
+    ioctl(fd, WR_GREEN_LEDS)
+    retval = os.write(fd, data.to_bytes(4, 'little'))
+        
 
 def random_Snack(rows,item, fd):
 
@@ -319,7 +322,7 @@ def main():
     #print("red 0x%X"%int.from_bytes(red, 'little'))
     #WR_RED_LEDS
     #WR_GREEN_LEDS
-    data = 0x0000007f
+    data = 0x00000000
     ioctl(fd, WR_GREEN_LEDS)
     retval = os.write(fd, data.to_bytes(4, 'little'))
     
