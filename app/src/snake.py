@@ -271,8 +271,9 @@ def main():
 
     while (flagInit):
         flagStart = startGame(fd)
-        quit
+        quitGame()
         while flagStart:
+            quitGame()
             flagStart = startGame(fd)
             pygame.time.delay(50) # xms delay
             clock.tick(10) # x frames per second
