@@ -237,7 +237,7 @@ def quitGame(fd):
     ioctl(fd,RD_SWITCHES)
     switch_status =os.read(fd,4)
     aux = int.from_bytes(switch_status, 'little')
-    #print(aux)
+    print(aux)
     if (aux == 2 or aux == 3):
         exit(1)
     else:
