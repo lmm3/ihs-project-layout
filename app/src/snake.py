@@ -7,7 +7,9 @@ import tk
 #from tk import messagebox
 import os, sys
 from fcntl import ioctl
+import threading
 from ioctl_cmds import *
+import time
 
 class Cube(object):
     rows = 20
@@ -199,8 +201,21 @@ def redraw_window(surface):
     draw_grid(width,rows,surface)
     pygame.display.update()
 
-def random_Snack(rows,item):
+def blinking(fd):
+    for i in range(3):
+        data = 0x00000000
+        ioctl(fd, WR_GREEN_LEDS)
+        retval = os.write(fd, data.to_bytes(4, 'little'))
+        time.slee(0.02)
+        data = 0x0000007f
+        ioctl(fd, WR_GREEN_LEDS)
+        retval = os.write(fd, data.to_bytes(4, 'little'))
+    
 
+def random_Snack(rows,item, fd):
+
+    blink = threading.Thread(target=blinking, args=(fd,))
+    blink.start()
     positions = item.body
 
     while True:
@@ -314,7 +329,7 @@ def main():
 
     win = pygame.display.set_mode((width,width))
     s = Snake((255,0,0),(10,10))
-    snack = Cube(random_Snack(rows,s),color=(0,255,0))
+    snack = Cube(random_Snack(rows,s, fd),color=(0,255,0))
     flagInit =  True
     flagStart =  False
     clock = pygame.time.Clock()
@@ -332,7 +347,7 @@ def main():
             s.move(fd) 
             if s.body[0].pos==snack.pos:
                 s.add_cube()
-                snack = Cube(random_Snack(rows,s),color=(0,255,0))
+                snack = Cube(random_Snack(rows,s, fd),color=(0,255,0))
             
             for x in range(len(s.body)):
                 if s.body[x].pos in list(map(lambda z:z.pos,s.body[x+1:])):
