@@ -66,49 +66,39 @@ class Snake(object):
         #print(int.from_bytes(red,'little'))
         button = int.from_bytes(red,'little')
         print(button)
-        if(button==14 and flagMove ==0){
+           
+        if (button == 14 and flagMove==0):
             flagMove = 1
             self.dirnx = -1
             self.dirny = 0
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(button == 15 and flagMove==1){
+        elif(button == 15 and flagMove==1):
             flagMove = 0
-        }
-  '''      
-        if (button == 14 AND flagMove==0){
-            flagMove = 1
-            self.dirnx = -1
-            self.dirny = 0
-            self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(button == 15 AND flagMove==1){
-            flagMove = 0
-        }#Move Right
-        if (button == 7 AND flagMove==0){
+        #Move Right
+        if (button == 7 and flagMove==0):
             flagMove = 1
             self.dirnx = 1
             self.dirny = 0
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(button == 15 AND flagMove==1){
+        elif(button == 15 and flagMove==1):
             flagMove = 0
-        }#Move Up
-        if (button ==13 AND flagMove==0){
+        #Move Up
+        if (button ==13 and flagMove==0):
             flagMove = 1
             self.dirnx = 0
             self.dirny = -1
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(button == 15 AND flagMove==1){
+        elif(button == 15 and flagMove==1):
             flagMove = 0
-        }#Move Down
-        if (button == 11 AND flagMove==0){
+        #Move Down
+        if (button == 11 and flagMove==0):
             flagMove = 1
             self.dirnx = 0
             self.dirny = 1
             self.turns[self.head.pos[:]] = [self.dirnx,self.dirny]
-        }elif(button == 15 AND flagMove==1){
+        elif(button == 15 and flagMove==1):
             flagMove = 0
-        }
         
-'''
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
