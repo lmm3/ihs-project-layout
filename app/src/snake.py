@@ -252,7 +252,7 @@ def main():
     while (flagInit):
         ioctl(fd,RD_SWITCHES)
         switch_status =os.read(fd,4)
-        print(int.from_bytes(switch_status, 'little'))
+        print(switch_status)
         while flagStart:
             pygame.time.delay(50) # xms delay
             clock.tick(10) # x frames per second
