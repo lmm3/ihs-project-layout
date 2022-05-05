@@ -245,27 +245,30 @@ def main():
     win = pygame.display.set_mode((width,width))
     s = Snake((255,0,0),(10,10))
     snack = Cube(random_Snack(rows,s),color=(0,255,0))
-    flag =  True
-
+    flagStart =  True
+    flagStart =  True
     clock = pygame.time.Clock()
 
-
-    while flag:
-        pygame.time.delay(50) # xms delay
-        clock.tick(10) # x frames per second
-        s.move(fd) 
-        if s.body[0].pos==snack.pos:
-            s.add_cube()
-            snack = Cube(random_Snack(rows,s),color=(0,255,0))
-        
-        for x in range(len(s.body)):
-            if s.body[x].pos in list(map(lambda z:z.pos,s.body[x+1:])):
-                print("Score",len(s.body))
-                tk.message_box("You lost!","Play again?")
-                s.reset((10,10))
-                break
-        
-        redraw_window(win)
+    while (flagInit):
+        ioctl(fd,RD_SWITCHES)
+        switch_status =os.read(fd,4)
+        print(int.from_bytes(switch_status, 'little'))
+        while flagStart:
+            pygame.time.delay(50) # xms delay
+            clock.tick(10) # x frames per second
+            s.move(fd) 
+            if s.body[0].pos==snack.pos:
+                s.add_cube()
+                snack = Cube(random_Snack(rows,s),color=(0,255,0))
+            
+            for x in range(len(s.body)):
+                if s.body[x].pos in list(map(lambda z:z.pos,s.body[x+1:])):
+                    print("Score",len(s.body))
+                    #tk.message_box("You lost!","Play again?")
+                    s.reset((10,10))
+                    break
+            
+            redraw_window(win)
 
 
 if __name__=="__main__":
