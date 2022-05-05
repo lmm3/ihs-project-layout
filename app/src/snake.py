@@ -245,34 +245,35 @@ def quitGame(fd):
     
 def numMap(score):
     if (score ==0):
-        return (0x40404000 +0xC0)
+        return 0xC0
     if (score == 1):
-        return (0X40404000 +0x79)
+        return 0xF9
     if (score == 2):#00010010
-        return 0X404040A4
+        return 0xA4
     if (score == 3):#00000110
-        return 6
+        return 0xB0
     if (score == 4):#01001100
-        return 76
+        return 0X99
     if (score == 5):#00100100
-        return 36
+        return 0X92
     if (score == 6):#00100000
-        return 32
+        return 0X82
     if (score == 7):#00001111
-        return 15
+        return 0XF8
     if (score == 8):#00000000
-        return 0
+        return 0X80
     if (score == 9):#00000100
-        return 4
+        return 0X90
 
 def drawScore(fd, score):
     if(score%10 == score):
-        data = numMap(score)
+        data = 0X40404000 + numMap(score)
         ioctl(fd,WR_R_DISPLAY)
         retval= os.write(fd, data.to_bytes(4,'little'))
     else:
         dataMinus = numMap(score%10)
-        dataUpper = numMap(score//10)
+        dataUpper = numMap(score//10) * 0X10
+        data = 0x40400000 + dataUpper + dataMinus
         ioctlr(fd,WR_R_DISPLAY)
         retval= os.write(fd, data.to_bytes(4,'little'))
         ioctl(fd,WR_R_DISPLAY)
