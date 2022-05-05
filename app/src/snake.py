@@ -54,7 +54,7 @@ class Snake(object):
     def move(self, fd):
         ioctl(fd, RD_PBUTTONS)
         red = os.read(fd, 4); # read 4 bytes and store in red var
-        print("red 0x%X"%int.from_bytes(red, 'little'))
+        #print("red 0x%X"%int.from_bytes(red, 'little'))
 
     
         flagMove =0
@@ -271,6 +271,9 @@ def drawScore(fd, score):
         ioctl(fd,WR_R_DISPLAY)
         retval= os.write(fd, data.to_bytes(4,'little'))
     else:
+        print(score)
+        print(score%10)
+        print(score//10)
         dataMinus = numMap(score%10)
         dataUpper = numMap(score//10) * 0X10
         data = 0x40400000 + dataUpper + dataMinus
