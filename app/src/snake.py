@@ -250,9 +250,9 @@ def slowGame(fd):
     aux = int.from_bytes(switch_status, 'little')
     print(aux)
     if (aux == 3):
-        return 2
+        return 5
     else:
-        return 10
+        return 15
 
 def main():
     if len(sys.argv) < 2:
