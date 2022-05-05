@@ -274,10 +274,9 @@ def drawScore(fd, score):
         dataMinus = numMap(score%10)
         dataUpper = numMap(score//10) * 0X10
         data = 0x40400000 + dataUpper + dataMinus
-        ioctlr(fd,WR_R_DISPLAY)
-        retval= os.write(fd, data.to_bytes(4,'little'))
         ioctl(fd,WR_R_DISPLAY)
         retval= os.write(fd, data.to_bytes(4,'little'))
+        
     
 
 def slowGame(fd):
