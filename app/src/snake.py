@@ -52,6 +52,7 @@ class Snake(object):
         self.dirny=1
 
     def move(self):
+        global fd
         ioctl(fd, RD_PBUTTONS)
         red = os.read(fd, 4); # read 4 bytes and store in red var
         print("red 0x%X"%int.from_bytes(red, 'little'))
@@ -232,7 +233,7 @@ def main():
     #ioctl(fd, WR_R_DISPLAY)
     #retval = os.write(fd, data.to_bytes(4, 'little'))
     #print("wrote %d bytes"%retval)
-    global fd = os.open(sys.argv[1], os.O_RDWR)
+    fd = os.open(sys.argv[1], os.O_RDWR)
     #ioctl(fd, RD_PBUTTONS)
     #red = os.read(fd, 4); # read 4 bytes and store in red var
     #print("red 0x%X"%int.from_bytes(red, 'little'))
