@@ -310,7 +310,7 @@ def slowGame(fd):
         return 10
 
 def ledRed(fd, score):
-    data = pow(0x2,score) -0x1
+    data = pow(0x2,score % 0x12) -0x1
     ioctl(fd, WR_RED_LEDS)
     retval = os.write(fd, data.to_bytes(4, 'little'))
 
