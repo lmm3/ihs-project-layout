@@ -2,7 +2,7 @@ import math
 import random
 import pygame
 import tk
-from tk import messagebox
+#from tk import messagebox
 import os, sys
 from fcntl import ioctl
 from ioctl_cmds import *
@@ -258,7 +258,7 @@ def main():
         for x in range(len(s.body)):
             if s.body[x].pos in list(map(lambda z:z.pos,s.body[x+1:])):
                 print("Score",len(s.body))
-                message_box("You lost!","Play again?")
+                tk.message_box("You lost!","Play again?")
                 s.reset((10,10))
                 break
         
