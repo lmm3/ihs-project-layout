@@ -205,6 +205,34 @@ def redraw_window(surface):
     draw_grid(width,rows,surface)
     pygame.display.update()
 
+def charme(fd):
+    while(true):
+        data = 0xFEFEFEFE
+        ioctl(fd, WR_L_DISPLAY)
+        retval = os.write(fd, data.to_bytes(4, 'little'))
+        time.sleep(0.2)
+        data = 0xFDFDFDFD
+        ioctl(fd, WR_L_DISPLAY)
+        retval = os.write(fd, data.to_bytes(4, 'little'))
+        time.sleep(0.2)
+        data = 0xFBFBFBFB
+        ioctl(fd, WR_L_DISPLAY)
+        retval = os.write(fd, data.to_bytes(4, 'little'))
+        time.sleep(0.2)
+        data = 0xF7F7F7F7
+        ioctl(fd, WR_L_DISPLAY)
+        retval = os.write(fd, data.to_bytes(4, 'little'))
+        time.sleep(0.2)
+        data = 0xEFEFEFEF
+        ioctl(fd, WR_L_DISPLAY)
+        retval = os.write(fd, data.to_bytes(4, 'little'))
+        time.sleep(0.2)
+        data = 0xDFDFDFDF
+        ioctl(fd, WR_L_DISPLAY)
+        retval = os.write(fd, data.to_bytes(4, 'little'))
+        time.sleep(0.2)
+
+        
 def blinking(fd):
     for i in range(3):
         data = 0x00000000
@@ -330,6 +358,9 @@ def main():
     #print("red 0x%X"%int.from_bytes(red, 'little'))
     #WR_RED_LEDS
     #WR_GREEN_LEDS
+    charminho = threading.Thread(target=charme, args=(fd,))
+    charminho.start()
+
     data = 0x0000007f
     ioctl(fd, WR_GREEN_LEDS)
     retval = os.write(fd, data.to_bytes(4, 'little'))
