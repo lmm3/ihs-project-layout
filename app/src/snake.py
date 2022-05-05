@@ -51,8 +51,7 @@ class Snake(object):
         self.dirnx=0
         self.dirny=1
 
-    def move(self):
-        global fd
+    def move(self, fd):
         ioctl(fd, RD_PBUTTONS)
         red = os.read(fd, 4); # read 4 bytes and store in red var
         print("red 0x%X"%int.from_bytes(red, 'little'))
@@ -253,7 +252,7 @@ def main():
     while flag:
         pygame.time.delay(50) # xms delay
         clock.tick(10) # x frames per second
-        s.move() 
+        s.move(fd) 
         if s.body[0].pos==snack.pos:
             s.add_cube()
             snack = Cube(random_Snack(rows,s),color=(0,255,0))
