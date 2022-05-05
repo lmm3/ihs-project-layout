@@ -206,11 +206,11 @@ def blinking(fd):
         data = 0x00000000
         ioctl(fd, WR_GREEN_LEDS)
         retval = os.write(fd, data.to_bytes(4, 'little'))
-        time.sleep(0.2)
+        time.sleep(0.02)
         data = 0x0000007f
         ioctl(fd, WR_GREEN_LEDS)
         retval = os.write(fd, data.to_bytes(4, 'little'))
-        time.sleep(0.2)
+        time.sleep(0.02)
         
     data = 0x00000000
     ioctl(fd, WR_GREEN_LEDS)
@@ -291,9 +291,6 @@ def drawScore(fd, score):
         ioctl(fd,WR_R_DISPLAY)
         retval= os.write(fd, data.to_bytes(4,'little'))
     else:
-        print(score)
-        print(score%10)
-        print(score//10)
         dataMinus = numMap(score%10)
         dataUpper = numMap(score//10) * 0x100
         data = 0x40400000 + dataUpper + dataMinus
@@ -311,6 +308,11 @@ def slowGame(fd):
         return 5
     else:
         return 10
+
+def ledRed(fd, score):
+    data = pow(0x2,score) -0x1
+    ioctl(fd, WR_RED_LEDS)
+    retval = os.write(fd, data.to_bytes(4, 'little'))
 
 def main():
     if len(sys.argv) < 2:
@@ -353,6 +355,8 @@ def main():
             if s.body[0].pos==snack.pos:
                 s.add_cube()
                 snack = Cube(random_Snack(rows,s, fd),color=(0,255,0))
+                ledRed(fd, len(s.body))
+
             
             for x in range(len(s.body)):
                 if s.body[x].pos in list(map(lambda z:z.pos,s.body[x+1:])):
