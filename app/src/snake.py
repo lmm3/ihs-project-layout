@@ -206,7 +206,7 @@ def blinking(fd):
         data = 0x00000000
         ioctl(fd, WR_GREEN_LEDS)
         retval = os.write(fd, data.to_bytes(4, 'little'))
-        time.slee(0.02)
+        time.sleep(0.02)
         data = 0x0000007f
         ioctl(fd, WR_GREEN_LEDS)
         retval = os.write(fd, data.to_bytes(4, 'little'))
