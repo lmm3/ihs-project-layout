@@ -243,6 +243,43 @@ def quitGame(fd):
     else:
         return False
     
+def numMap(score):
+    if (score ==0):
+        return 40
+    if (score == 1):
+        return 79
+    if (score == 2):#00010010
+        return hex(18)
+    if (score == 3):#00000110
+        return hex(6)
+    if (score == 4):#01001100
+        return hex(76)
+    if (score == 5):#00100100
+        return hex(36)
+    if (score == 6):#00100000
+        return hex(32)
+    if (score == 7):#00001111
+        return hex(15)
+    if (score == 8):#00000000
+        return 0
+    if (score == 9):#00000100
+        return hex(4)
+
+def drawScore(fd, score):
+    if(score%10 == score):
+        data = 0x40404000 + numMap(score)
+        ioctlr(fd,WR_R_DISPLAY)
+        retval= os.write(fd, data.to_bytes(4,'little'))
+    else:
+        dataMinus = numMap(score%10)
+        dataUpper = numMap(score//10)
+        ioctlr(fd,WR_R_DISPLAY)
+        retval= os.write(fd, data.to_bytes(4,'little'))
+        ioctlr(fd,WR_R_DISPLAY)
+        retval= os.write(fd, data.to_bytes(4,'little'))
+    ioctlr(fd,WR_R_DISPLAY)
+    retval= os.write(fd, data.to_bytes(4,'little'))
+
 
 def slowGame(fd):
     ioctl(fd,RD_SWITCHES)
@@ -252,7 +289,7 @@ def slowGame(fd):
     if (aux == 3):
         return 5
     else:
-        return 15
+        return 10
 
 def main():
     if len(sys.argv) < 2:
@@ -280,6 +317,7 @@ def main():
     clock = pygame.time.Clock()
 
     while (flagInit):
+        drawScore(fd,len(s.body))
         flagStart = startGame(fd)
         quitGame(fd)
         while flagStart:
