@@ -206,7 +206,7 @@ def redraw_window(surface):
     pygame.display.update()
 
 def charme(fd):
-    while(true):
+    while(True):
         data = 0xFEFEFEFE
         ioctl(fd, WR_L_DISPLAY)
         retval = os.write(fd, data.to_bytes(4, 'little'))
