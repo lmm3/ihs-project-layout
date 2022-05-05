@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import math
 import random
 import pygame
@@ -230,7 +232,7 @@ def main():
     #ioctl(fd, WR_R_DISPLAY)
     #retval = os.write(fd, data.to_bytes(4, 'little'))
     #print("wrote %d bytes"%retval)
-    #fd = os.open(sys.argv[1], os.O_RDWR)
+    global fd = os.open(sys.argv[1], os.O_RDWR)
     #ioctl(fd, RD_PBUTTONS)
     #red = os.read(fd, 4); # read 4 bytes and store in red var
     #print("red 0x%X"%int.from_bytes(red, 'little'))
