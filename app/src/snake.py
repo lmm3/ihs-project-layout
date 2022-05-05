@@ -58,10 +58,10 @@ class Snake(object):
 
     
         flagMove =0
-        moveFPGAL = #receber click esquerda do fpga Aqui
-        moveFPGAR = #receber click direita do fpga Aqui
-        moveFPGAU = #receber click cima do fpga Aqui
-        moveFPGAD = #receber click baixo do fpga Aqui
+        #moveFPGAL = #receber click esquerda do fpga Aqui
+        #moveFPGAR = #receber click direita do fpga Aqui
+        #moveFPGAU = #receber click cima do fpga Aqui
+        #moveFPGAD = #receber click baixo do fpga Aqui
         #Move Left
         if (red == 0xE AND flagMove==0){
             flagMove = 1
