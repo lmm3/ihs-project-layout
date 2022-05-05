@@ -346,7 +346,7 @@ def main():
         quitGame(fd)
         while flagStart:
             drawScore(fd,len(s.body))
-            
+            ledRed(fd, len(s.body))
             quitGame(fd)
             flagStart = startGame(fd)
             pygame.time.delay(50) # xms delay
@@ -355,7 +355,7 @@ def main():
             if s.body[0].pos==snack.pos:
                 s.add_cube()
                 snack = Cube(random_Snack(rows,s, fd),color=(0,255,0))
-                ledRed(fd, len(s.body))
+                
 
             
             for x in range(len(s.body)):
