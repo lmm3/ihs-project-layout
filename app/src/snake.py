@@ -63,7 +63,7 @@ class Snake(object):
         #moveFPGAU = #receber click cima do fpga Aqui
         #moveFPGAD = #receber click baixo do fpga Aqui
         #Move Left
-        print(int(red))
+        print(hex(int.from_bytes(red)))
         '''
         if (red == hex(0xE) AND flagMove==0){
             flagMove = 1
