@@ -223,6 +223,16 @@ def message_box(subject,content):
     except:
         pass
 
+def startGame(fd):
+    ioctl(fd,RD_SWITCHES)
+    switch_status =os.read(fd,4)
+    aux = int.from_bytes(switch_status, 'little')
+    #print(aux)
+    if (aux %2== 1):
+        return True
+    else:
+        return False
+    
 
 def main():
     if len(sys.argv) < 2:
@@ -250,10 +260,9 @@ def main():
     clock = pygame.time.Clock()
 
     while (flagInit):
-        ioctl(fd,RD_SWITCHES)
-        switch_status =os.read(fd,4)
-        print(int.from_bytes(switch_status, 'little'))
+        flagStart = startGame(fd)
         while flagStart:
+            flagStart = startGame(fd)
             pygame.time.delay(50) # xms delay
             clock.tick(10) # x frames per second
             s.move(fd) 
