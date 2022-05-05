@@ -238,7 +238,7 @@ def quitGame(fd):
     switch_status =os.read(fd,4)
     aux = int.from_bytes(switch_status, 'little')
     print(aux)
-    if (aux = 131073 or aux == 131072 or aux = 131074 or aux = 131075 ):
+    if (aux == 131073 or aux == 131072 or aux == 131074 or aux == 131075 ):
         exit(1)
     else:
         return False
@@ -249,7 +249,7 @@ def slowGame(fd):
     switch_status =os.read(fd,4)
     aux = int.from_bytes(switch_status, 'little')
     print(aux)
-    if (aux = 3):
+    if (aux == 3):
         return 25
     else:
         return 50
