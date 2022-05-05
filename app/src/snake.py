@@ -275,7 +275,7 @@ def drawScore(fd, score):
         print(score%10)
         print(score//10)
         dataMinus = numMap(score%10)
-        dataUpper = numMap(score//10) * 0X10
+        dataUpper = numMap(score//10) * 0x100
         data = 0x40400000 + dataUpper + dataMinus
         ioctl(fd,WR_R_DISPLAY)
         retval= os.write(fd, data.to_bytes(4,'little'))
