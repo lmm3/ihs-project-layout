@@ -1,11 +1,11 @@
 import math
 import random
 import pygame
-import tkinter as tk
-from tkinter import messagebox
-#import os, sys
-#from fcntl import ioctl
-#from ioctl_cmds import *
+import tk
+from tk import messagebox
+import os, sys
+from fcntl import ioctl
+from ioctl_cmds import *
 
 class Cube(object):
     rows = 20
@@ -50,6 +50,10 @@ class Snake(object):
         self.dirny=1
 
     def move(self):
+        ioctl(fd, RD_PBUTTONS)
+        red = os.read(fd, 4); # read 4 bytes and store in red var
+        print("red 0x%X"%int.from_bytes(red, 'little'))
+    
         """
         flagMove =0
         moveFPGAL = #receber click esquerda do fpga Aqui
@@ -123,7 +127,7 @@ class Snake(object):
 
         for i,c in enumerate(self.body):
             p = c.pos[:]
-            print(self.turns)
+            #       print(self.turns)
             if p in self.turns:
                 turn = self.turns[p]
                 c.move(turn[0],turn[1])
@@ -210,7 +214,7 @@ def message_box(subject,content):
     root = tk.Tk()
     root.attributes("-topmost",True)
     root.withdraw()
-    messagebox.showinfo(subject,content)
+    tk.messagebox.showinfo(subject,content)
     try:
         root.destroy()
     except:
@@ -218,11 +222,11 @@ def message_box(subject,content):
 
 
 def main():
-    #if len(sys.argv) < 2:
-        #print("Error: expected more command line arguments")
-        #print("Syntax: %s </dev/device_file>"%sys.argv[0])
-        #exit(1)
-    #data = 0x40404079;
+    if len(sys.argv) < 2:
+        print("Error: expected more command line arguments")
+        print("Syntax: %s </dev/device_file>"%sys.argv[0])
+        exit(1)
+    global data = 0x40404079;
     #ioctl(fd, WR_R_DISPLAY)
     #retval = os.write(fd, data.to_bytes(4, 'little'))
     #print("wrote %d bytes"%retval)
