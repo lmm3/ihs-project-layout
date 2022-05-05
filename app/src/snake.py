@@ -268,7 +268,7 @@ def numMap(score):
 def drawScore(fd, score):
     if(score%10 == score):
         data = 0x40404000 + numMap(score)
-        ioctlr(fd,WR_R_DISPLAY)
+        ioctl(fd,WR_R_DISPLAY)
         retval= os.write(fd, data.to_bytes(4,'little'))
     else:
         dataMinus = numMap(score%10)
